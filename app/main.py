@@ -1,13 +1,25 @@
 from typing import Union
-
+from starlette.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 
-app = FastAPI()
+from app.api.api import api_router
+from app.core.config import settings
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "Korea"}
+app = FastAPI(
+    title= "customize_bus_data"
+)
+
+if settings.BACKEND_ORIGINS:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.BACKEND_ORIGINS.split(','),
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+app.include_router(api_router, prefix=settings.API_PREFIX)
 
 
 @app.get("/items/{item_id}")
