@@ -33,7 +33,7 @@ services:
       DRONE_RUNNER_NAME: "4drone"
       DRONE_RUNNER_NETWORK_MODE: host
       DRONE_DEBUG: "true"
-      DRONE_TRACE: "true"
+      # DRONE_TRACE: "true"
     ports:
       - "3000:3000"
     volumes:

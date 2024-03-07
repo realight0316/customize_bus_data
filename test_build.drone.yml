@@ -1,24 +1,43 @@
+# kind: pipeline
+# type: docker
+# name: backend-ci-cd
+
+# steps:
+#   - name: build
+#     image: docker
+#     commands:
+#       - docker-compose build
+
+#   - name: deploy
+#     image: alpine
+#     commands:
+#       - touch testfile.txt
+
+#     settings:
+#       username:
+#         from_secret: dockerhub_username
+#       password:
+#         from_secret: dockerhub_password
+#       repo: your_dockerhub_username/your_image_name
+#       tags: [latest]
+#       when:
+#         branch: master
+
 kind: pipeline
-type: docker
-name: backend-ci-cd
+type: exec
+name: linux-test
+
+platform:
+  os: linux
+  arch: amd64
 
 steps:
-  # - name: build
-  #   image: docker
-  #   commands:
-  #     - docker-compose build
-
-  - name: deploy
-    image: alpine
-    commands:
-      - touch testfile.txt
-
-    # settings:
-    #   username:
-    #     from_secret: dockerhub_username
-    #   password:
-    #     from_secret: dockerhub_password
-    #   repo: your_dockerhub_username/your_image_name
-    #   tags: [latest]
-    #   when:
-    #     branch: master
+- name: greeting
+  commands:
+  - echo hello world
+- name: build-image
+  commands:
+  - docker-compose build
+- name: make-txt-file
+  commands:
+  - touch testfile141.txt
