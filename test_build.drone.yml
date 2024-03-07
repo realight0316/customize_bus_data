@@ -1,0 +1,9 @@
+kind: pipeline
+type: docker
+name: test-cicd
+steps:
+  - name: greeting
+    image: alpine
+    commands:
+      - echo hello
+      - echo world
