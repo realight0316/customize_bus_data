@@ -22,3 +22,19 @@ services:
     ports:
       - "5432:5432"
 
+  drone-runner:
+    image: drone/drone-runner-docker:latest
+    container_name: custom-drone-runner
+    environment:
+      DRONE_RPC_PROTO: "https"
+      DRONE_RPC_HOST: 60cc-222-106-235-164.ngrok-free.app
+      DRONE_RPC_SECRET: d4cb380849f807f5620d01d8eb6cc391
+      DRONE_RUNNER_CAPACITY: "2"
+      DRONE_RUNNER_NAME: "4drone"
+      DRONE_RUNNER_NETWORK_MODE: host
+      DRONE_DEBUG: "true"
+      # DRONE_TRACE: "true"
+    ports:
+      - "3000:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
