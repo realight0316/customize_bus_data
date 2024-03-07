@@ -3,10 +3,10 @@ type: docker
 name: backend-ci-cd
 
 steps:
-  - name: build
-    image: docker
-    commands:
-      - docker-compose build
+  # - name: build
+  #   image: docker
+  #   commands:
+  #     - docker-compose build
 
   - name: deploy
     image: alpine
