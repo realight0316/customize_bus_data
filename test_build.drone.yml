@@ -25,7 +25,7 @@
 
 kind: pipeline
 type: exec
-name: linux-test
+name: linux-exec-test
 
 platform:
   os: linux
@@ -35,9 +35,12 @@ steps:
 - name: greeting
   commands:
   - echo hello world
+  
 - name: build-image
   commands:
   - docker-compose build
+
 - name: make-txt-file
   commands:
+  - pwd
   - touch testfile141.txt
