@@ -38,6 +38,8 @@ steps:
   
 - name: build-image
   commands:
+  - pwd
+  - docker ps
   - docker-compose build
 
 - name: make-txt-file
